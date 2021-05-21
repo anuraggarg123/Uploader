@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static%}
+<head>
+	<title>Login Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<style>
+		#aa
+		{
+		margin-left:290px;
+		font-weight:bold;
+		font-size:43px;
+		color:yellow;
+		}
+		#bb
+		{
+		margin-left:300px;
+		margin-top:90px;
+		font-weight:bold;
+		font-size:28px;
+		color:red;
+		}
+		#cc
+		{
+		margin-left:322px;
+		margin-top:60px;
+		font-weight:bold;
+		font-size:28px;
+		color:red;
+		}
+		#dd
+		{
+		margin-left:460px;
+		margin-top:90px;
+		font-size:22px;
+		background-color:yellow;
+		border-color:blue;
+		}
+		#main
+		{
+		background-image:url('{% static 'images/pic1.jpg' %}');
+		background-repeat:no-repeat;
+		background-attachment:fixed;
+		background-size:1400px;
+		}
+	</style>
+</head>
+<body id="main">
+
+		<div class="container">
+
+			<div class="wrap-login100">
+				<form class="login100-form" action="" method="post" onsubmit="return f()">
+                    {% csrf_token %}
+					<span id="aa">
+						Welcome To Login Page
+					</span>
+
+
+					<div id='bb'>
+						User Name: <input autocomplete="off" type="text" name="username" id="user">
+                    <br><small><span id="user1" style=""></span></small>
+					</div>
+
+
+					<div id="cc">
+						Password: <input autocomplete="off" type="password"  name="encrypt" id="passwd">
+						<br><small><span id="passwd1" style=""></span></small>
+					</div>
+
+					</div>
+
+                   <div  class="container-login100-form-btn">
+						<button id="dd" class="login100-form-btn" >
+							Submit
+						</button>
+						</div>
+				</form>
+
+			</div>
+
+<script>
+  function f()
+  {
+    user=document.getElementById('user').value;
+    pass=document.getElementById('passwd').value;
+    if(user=="")
+    {
+     document.getElementById('user1').innerHTML='** Fill the Username';
+     return false;
+    }
+    if((user.length<=2)||(user.length>=20))
+    {
+     document.getElementById('user1').innerHTML='** user length should be between 2 and 20';
+     return false;
+    }
+    if(!isNaN(user))
+    {
+     document.getElementById('user1').innerHTML='** only characters are allowed';
+     return false;
+    }
+
+
+    if(pass=="")
+    {
+      document.getElementById('passwd1').innerHTML='** Fill the Password';
+     return false;
+    }
+    if((pass.length<=5)||(pass.length>20))
+    {
+      document.getElementById('passwd1').innerHTML='** length must be between 5 and 20';
+     return false;
+    }
+  }
+</script>
+</body>
+</html>
